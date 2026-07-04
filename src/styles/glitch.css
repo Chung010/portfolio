@@ -1,0 +1,109 @@
+/* GlitchLoader styles */
+.glitch-loader {
+  position: fixed;
+  inset: 0;
+  background: #0f0f0f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.glitch-exit {
+  opacity: 0;
+  transform: scale(1.05);
+  pointer-events: none;
+}
+
+.glitch-screen {
+  max-width: 480px;
+  width: 90%;
+}
+
+.glitch-title {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  font-weight: 700;
+  color: #00ff88;
+  letter-spacing: 0.1em;
+  margin-bottom: 2rem;
+  position: relative;
+  animation: glitch 2s infinite;
+}
+
+.glitch-title::before,
+.glitch-title::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.glitch-title::before {
+  color: #00cfff;
+  animation: glitch-clip-1 2s infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+  transform: translateX(-2px);
+}
+
+.glitch-title::after {
+  color: #ff0055;
+  animation: glitch-clip-2 2s infinite;
+  clip-path: polygon(0 66%, 100% 66%, 100% 100%, 0 100%);
+  transform: translateX(2px);
+}
+
+.glitch-terminal {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  line-height: 2;
+  border-left: 2px solid #00ff88;
+  padding-left: 1rem;
+}
+
+.glitch-line {
+  color: #888;
+  animation: fadeIn 0.2s ease forwards;
+}
+
+.glitch-line:last-of-type {
+  color: #00ff88;
+}
+
+.glitch-blink {
+  color: #00ff88;
+  animation: blink 0.7s step-end infinite;
+  font-family: 'Space Mono', monospace;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+@keyframes glitch {
+  0%, 90%, 100% { transform: none; }
+  91% { transform: skewX(-1deg); }
+  93% { transform: skewX(1deg) translateX(2px); }
+  95% { transform: none; }
+}
+
+@keyframes glitch-clip-1 {
+  0%, 90%, 100% { transform: translateX(-2px); opacity: 0.7; }
+  92% { transform: translateX(4px); opacity: 1; }
+  94% { transform: translateX(-4px); opacity: 0.5; }
+  96% { transform: translateX(0); opacity: 0; }
+}
+
+@keyframes glitch-clip-2 {
+  0%, 88%, 100% { transform: translateX(2px); opacity: 0.6; }
+  90% { transform: translateX(-4px); opacity: 1; }
+  93% { transform: translateX(4px); opacity: 0.4; }
+  96% { transform: translateX(0); opacity: 0; }
+}
