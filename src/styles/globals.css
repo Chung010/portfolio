@@ -21,12 +21,25 @@ body { background: var(--c1); color: var(--txt); font-family: var(--font-head); 
 .wrap { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
 
 /* NAV */
-.navbar { position: sticky; top: 0; z-index: 99; background: rgba(15,15,15,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--c3); padding: 1rem 0; }
-.navbar-inner { display: flex; justify-content: space-between; align-items: center; }
+.navbar { position: sticky; top: 0; z-index: 99; background: rgba(15,15,15,0.85); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-bottom: 1px solid var(--c3); padding: 1rem 0; }
+.navbar-inner { display: flex; justify-content: space-between; align-items: center; position: relative; }
 .logo { font-size: 1.1rem; font-weight: 800; color: var(--accent); text-decoration: none; letter-spacing: -0.02em; }
 .nav-links { display: flex; gap: 2rem; }
 .nav-link { color: var(--muted); text-decoration: none; font-size: .85rem; font-family: var(--font-mono); letter-spacing: .05em; transition: color .2s; }
 .nav-link:hover, .nav-link--active { color: var(--accent); }
+
+/* Mobile nav toggle button (hidden on desktop) */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--c3);
+  border-radius: 4px;
+  color: var(--txt);
+  padding: .4rem;
+  cursor: pointer;
+  line-height: 0;
+  -webkit-tap-highlight-color: transparent;
+}
 
 /* HERO */
 .hero { min-height: 90vh; display: flex; align-items: center; padding: 4rem 0; }
@@ -138,3 +151,109 @@ footer p { font-family: var(--font-mono); font-size: .75rem; color: var(--muted)
 .activity-name { font-size: 1rem; font-weight: 700; letter-spacing: -.01em; margin-bottom: .4rem; }
 .activity-desc { font-family: var(--font-mono); font-size: .8rem; color: var(--muted); line-height: 1.7; margin-bottom: .6rem; }
 .activity-result { font-family: var(--font-mono); font-size: .75rem; color: var(--accent2); }
+
+/* ============================================
+   RESPONSIVE: TABLET & BELOW (<= 900px)
+   ============================================ */
+@media (max-width: 900px) {
+  .wrap { padding: 0 1.5rem; }
+
+  .about-hero,
+  .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+  .contact-links { margin-top: .5rem; }
+
+  .sec-title { font-size: 2rem; }
+}
+
+/* ============================================
+   RESPONSIVE: MOBILE NAV (<= 720px)
+   ============================================ */
+@media (max-width: 720px) {
+  .nav-toggle { display: flex; align-items: center; justify-content: center; }
+
+  .nav-links {
+    position: absolute;
+    top: calc(100% + 1rem);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--c2);
+    border: 1px solid var(--c3);
+    border-radius: 6px;
+    padding: .5rem;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: max-height .25s ease, opacity .2s ease;
+  }
+
+  .nav-links--open {
+    max-height: 320px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-link {
+    padding: .85rem 1rem;
+    border-radius: 4px;
+    font-size: .9rem;
+  }
+
+  .nav-link:hover,
+  .nav-link--active { background: var(--c3); }
+}
+
+/* ============================================
+   RESPONSIVE: SMALL TABLET / LARGE PHONE (<= 640px)
+   ============================================ */
+@media (max-width: 640px) {
+  .wrap { padding: 0 1.25rem; }
+
+  .hero { min-height: auto; padding: 3rem 0; }
+
+  .sec-title { font-size: 1.7rem; margin-bottom: 2rem; }
+
+  .about-info-grid { grid-template-columns: 1fr 1fr; gap: .6rem; }
+
+  .contact-cta { font-size: 1.5rem; }
+
+  .proj-head { flex-wrap: wrap; gap: .35rem; }
+
+  .timeline-head { flex-direction: column; align-items: flex-start; gap: .25rem; }
+  .timeline-period { white-space: normal; }
+
+  .activity-grid { grid-template-columns: 1fr; }
+
+  .section { padding: 3rem 0; }
+}
+
+/* ============================================
+   RESPONSIVE: PHONE (<= 420px)
+   ============================================ */
+@media (max-width: 420px) {
+  .wrap { padding: 0 1rem; }
+
+  .logo { font-size: 1rem; }
+
+  .hero-btns { flex-direction: column; align-items: stretch; }
+  .hero-btns .btn { text-align: center; }
+
+  .about-info-grid { grid-template-columns: 1fr; }
+
+  .about-actions { flex-direction: column; align-items: stretch; }
+  .about-actions .btn { text-align: center; }
+
+  .proj-footer { flex-direction: column; align-items: flex-start; }
+}
+
+/* ============================================
+   TOUCH DEVICES: bigger tap targets, no hover-lock
+   ============================================ */
+@media (hover: none) and (pointer: coarse) {
+  .btn, .c-link, .proj-gh-link, .proj-live-link, .nav-toggle {
+    min-height: 44px;
+  }
+}
