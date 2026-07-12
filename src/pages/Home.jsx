@@ -18,7 +18,7 @@ export default function Home() {
             <span className="name">Pao Bunyaphon.</span>
           </h1>
           <p className="hero-sub">
-            Developers &amp; <span>Software engineer</span><br />
+            <span>Developers</span> &amp; <span>Software engineer</span><br />
             I build secure, fast, and beautiful web experiences.
           </p>
           <div className="hero-btns">
