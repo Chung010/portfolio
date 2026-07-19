@@ -15,7 +15,7 @@ export default function Home() {
           <div className="hero-tag">available for learn and work</div>
           <h1>
             <span className="hi">hey, i'm</span>
-            <span className="name">Pao Bunyaphon.</span>
+            <span className="name">Pao Banyaphon</span>
           </h1>
           <p className="hero-sub">
             <span>Developers</span> &amp; <span>Software engineer</span><br />
